@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        note app
+    </title>
+    <style>
+        .note{
+            border: 1px solid #aaa;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f2f2f2;
+        }
+        .notetime{
+            display: block;
+            font-size: 12px;
+            color: grey;
+        }
+    </style>
+</head>
+<body>
+ <h2> Note creator app</h2>
+<input type="text" id="noteinput" placeholder="write your note here.....">
+<button id="addNote">Add Note</button>
+<div id="notescontainer" ></div>
+<script>
+   let noteinput=document.getElementById("noteinput");
+   let addNotebtn=document.getElementById("addNote");
+   let notescontainer=document.getElementById("notescontainer");
+   function addnote(){
+    let noteText=noteinput.value.trim();
+    if(noteText===""){
+       alert("input cant be empty");
+        return;
+    }
+ let noteDiv=document.createElement("p");
+ noteDiv.className="note";
+ let notePara=document.createElement("p");
+ notePara.textContent=noteText;
+ let timetag=document.createElement("time");
+ let now=new Date();
+ timetag.textContent=now.toLocaleString();
+ noteDiv.appendChild(notePara);
+ noteDiv.appendChild(timetag);
+ notescontainer.appendChild(noteDiv);
+ noteinput.value="";
+
+   }
+addNotebtn.addEventListener("click",addnote);
+noteinput.addEventListener("keypress", function(e){
+    if(e.key=="Enter"){
+        addnote();
+    }
+})
+
+</script>
+
+
+
+
+
+
+
+</body>
+
+</html>

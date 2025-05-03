@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        practise
+    </title>
+</head>
+<body>
+<h1>to do list</h1>
+<input type="text" id="text" placeholder="enter your text here.....">
+<button id="add"> Enter</button>
+<button id="clear">clear</button>
+<ol id="list"> </ol>
+<script>
+let text = document.getElementById("text");
+let add = document.getElementById("add");
+let list = document.getElementById("list");
+let clear = document.getElementById("clear");
+
+// Add a new item to the list
+add.addEventListener("click", function() {
+    let input = text.value;
+    if (input === "") {  
+        alert("It can't be empty");
+        return;
+    }
+
+    // Create a new list item
+    let li = document.createElement("li");
+
+    // Add a checkbox
+    let checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.style.marginRight = "10px";
+
+    // Add the text
+    let span = document.createElement("span");
+    span.innerText = input;
+
+    // Add a delete button
+    let deleteButton = document.createElement("button");
+    deleteButton.innerText = "Delete";
+    deleteButton.style.marginLeft = "10px";
+    deleteButton.addEventListener("click", function() {
+        if (confirm(`Are you sure you want to delete "${span.innerText}"?`)) {
+            list.removeChild(li); // Deletes the specific item
+        }
+    });
+
+    // Append the checkbox, text, and delete button to the list item
+    li.appendChild(checkbox);
+    li.appendChild(span);
+    li.appendChild(deleteButton);
+
+    // Append the list item to the list
+    list.appendChild(li);
+
+    // Clear the input field
+    text.value = "";
+
+
+// Clear all items in the list
+clear.addEventListener("click", function() {  
+    if (confirm("Are you sure you want to clear the entire list?")) {
+        list.innerHTML = ""; // Clears all items in the list
+    }
+});
+</script>
+</body>
+</html>
